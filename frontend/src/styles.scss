@@ -1,0 +1,236 @@
+@import "@ionic/angular/css/core.css";
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  --ion-font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --app-font-scale: 0.9;
+  --ion-color-primary: #215be6;
+  --ion-color-success: #18b957;
+  --ion-background-color: #f6f7fb;
+  color-scheme: light;
+}
+
+html { font-size: 12px; }
+body { background: #f6f7fb; font-size: 12px; }
+ion-content { --background: #f6f7fb; }
+ion-toolbar { --background: #fff; --border-color: #e5e9f2; }
+
+ion-content h1 { font-size: clamp(28px, 4vw, 44px) !important; }
+ion-content h2 { font-size: clamp(21px, 3vw, 31px) !important; }
+ion-content h3 { font-size: clamp(16px, 2vw, 21px) !important; }
+ion-content input,
+ion-content select,
+ion-content textarea,
+ion-content ion-button { font-size: 13px !important; }
+
+.admin-shell nav a,
+.admin-shell .logout { font-size: 13px !important; }
+.admin-shell .topbar h1 { font-size: 27px !important; }
+.admin-shell .hero-copy h2 { font-size: 35px !important; }
+.admin-shell .panel h3 { font-size: 18px !important; }
+.admin-shell .metrics strong { font-size: 30px !important; }
+.admin-shell .metrics b,
+.admin-shell .student-row strong,
+.admin-shell .driver-row strong,
+.admin-shell .payment-row strong { font-size: 15px !important; }
+.admin-shell .form-box label,
+.admin-shell .account-form label { font-size: 13px !important; }
+
+.page {
+  max-width: 560px;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 28px 18px 92px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.avatar, .icon-pill {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: #eaf0ff;
+  color: #215be6;
+  font-weight: 800;
+}
+
+.muted { color: #8b98ad; }
+.title { font-size: 25px; font-weight: 850; letter-spacing: 0; margin: 0 0 4px; color: #171b26; }
+.section-title { font-size: 18px; font-weight: 800; margin: 26px 0 14px; color: #171b26; }
+
+.status {
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  font-size: 13px;
+  background: #d9f9e5;
+  color: #18a650;
+  white-space: nowrap;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #dce3ee;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(22, 42, 76, .06);
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.metric {
+  min-height: 112px;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.metric strong { display: block; font-size: 30px; margin-top: 12px; color: #215be6; }
+.metric span { font-weight: 700; color: #171b26; }
+.metric small { color: #8b98ad; }
+.soft-blue { background: #dce7ff; }
+.soft-green { background: #d9f9e5; }
+.soft-yellow { background: #fff3c9; }
+.soft-red { background: #ffe2e2; }
+
+.primary-button {
+  --border-radius: 18px;
+  --box-shadow: none;
+  min-height: 54px;
+  font-weight: 800;
+}
+
+.ghost-button {
+  --border-radius: 18px;
+  --background: #edf1f7;
+  --background-activated: #e2e8f2;
+  --color: #171b26;
+  --box-shadow: none;
+  min-height: 54px;
+  font-weight: 800;
+}
+
+.list-card { overflow: hidden; }
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border-bottom: 1px solid #e8edf5;
+}
+.row:last-child { border-bottom: 0; }
+.row-main { flex: 1; min-width: 0; }
+.row-main h3 { margin: 0; font-size: 16px; font-weight: 800; color: #1b1f2a; }
+.row-main p { margin: 4px 0 0; color: #8b98ad; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.amount { font-size: 17px; font-weight: 850; text-align: right; color: #171b26; }
+.tag { display: inline-flex; align-items: center; border-radius: 999px; padding: 6px 10px; font-weight: 800; font-size: 12px; }
+.tag.pending { color: #e18400; background: #fff0c7; }
+.tag.validated { color: #18a650; background: #d9f9e5; }
+.tag.expired, .tag.denied { color: #ef4444; background: #ffe2e2; }
+
+.map-box {
+  height: 260px;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid #e2e7f0;
+}
+
+ion-tab-bar {
+  --background: #fff;
+  --border: 1px solid #e5e9f2;
+  height: 72px;
+}
+
+/* Navigation is owned by the shared app shell. Admin pages keep their content
+   layouts, while their old per-page sidebars are suppressed. */
+.admin-shell {
+  grid-template-columns: 1fr !important;
+}
+
+.admin-shell > .sidebar {
+  display: none !important;
+}
+
+/* Restrained card surfaces: preserve the current palette while reducing
+   oversized radii, floating shadows, nested layers, and excess whitespace. */
+.admin-shell .panel,
+.admin-shell .system-panel,
+.admin-shell .summary-panel,
+.admin-shell .ledger-panel,
+.admin-shell .account-card {
+  border: 1px solid rgba(210, 221, 238, .95) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 6px 18px rgba(2, 24, 67, .10) !important;
+}
+
+.admin-shell .metrics article {
+  min-height: 164px !important;
+  padding: 20px !important;
+  border: 1px solid #d8e1ef !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(2, 24, 67, .08) !important;
+}
+
+.admin-shell .form-box,
+.admin-shell .student-list,
+.admin-shell .driver-list,
+.admin-shell .point-list,
+.admin-shell .bus-group {
+  border-radius: 10px !important;
+  background: #fff !important;
+}
+
+.admin-shell .registered-panel,
+.admin-shell .current-panel,
+.admin-shell .ledger-panel,
+.admin-shell .account-card {
+  min-height: 0 !important;
+}
+
+.admin-shell .student-row,
+.admin-shell .driver-row,
+.admin-shell .payment-row,
+.admin-shell .bus-row,
+.admin-shell .point-row {
+  min-height: 76px !important;
+}
+
+.driver-page .bus-card,
+.driver-page .scanner-card,
+.track-page .bus-panel,
+.updates-page .notifications-panel,
+.profile-page .details-shell,
+.reservation-page .booking-shell {
+  border: 1px solid rgba(210, 222, 239, .75) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 24px rgba(0, 20, 59, .14) !important;
+}
+
+.driver-page .bus-details,
+.driver-page .interior,
+.driver-page .scanner-shell,
+.updates-page .notification-card,
+.track-page .bus-row {
+  border-radius: 10px !important;
+}
+
+@media (max-width: 360px) {
+  .page { padding-left: 14px; padding-right: 14px; }
+  .title { font-size: 21px; }
+  .metric strong { font-size: 26px; }
+}
